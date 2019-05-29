@@ -1,0 +1,17 @@
+{
+    "name": "play-with-streams",
+    "version": "1.0.0",
+    "description": "",
+    "main": "main.js",
+    "scripts": {
+        "start": "electron .",
+        "package-linux": "electron-packager . --overwrite --platform=linux --arch=x64 --icon=assets/icons/png/icon.png --prune=true --out=release-builds"
+    },
+    "dependencies": {
+        "electron": "^5.0.1",
+        "electron-reload": "^1.4.0",
+        "save": "^2.3.3",
+        "websocket": "^1.0.28",
+        "ws": "^7.0.0"
+    }
+}
