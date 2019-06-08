@@ -8,7 +8,9 @@
 </div>
 
 ## How to install
-you should have installed node.js
+you should have installed node.js                                                           
 open the server
-in terminal => " npm install " then  "npm start ".
+
+in terminal => " npm install " then  "npm start "
+
 if it doesn't work, update your node.js version 
