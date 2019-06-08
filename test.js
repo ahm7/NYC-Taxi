@@ -28,8 +28,7 @@ client.on('connect', function(connection) {
         if (message.type === 'utf8') {
             num_of_records++;
 
-            //console.log(Object.values(hash));
-            // console.log("Received: '" + message.utf8Data + "'");
+
             const records = JSON.parse(message.utf8Data);
             if (records.pickupDateTime.charAt(0) === '"') {
                 records.pickupDateTime = records.pickupDateTime.substring(1, records.pickupDateTime.length - 1);
@@ -70,16 +69,12 @@ function Number_of_Trips_per_day(records) {
 
     // implement hash for dates 
 
-    // show the values stored
-    // use hasOwnProperty to filter out keys from the Object.prototype
     if (hash.hasOwnProperty(date[0])) {
         hash[date[0]]++;
 
-        //console.log('key is: ' + date[0] + ', value is: ' + hash[date[0]]);
     } else {
 
         hash[date[0]] = 1;
-        //console.log('key is: ' + date[0] + ', value is: ' + hash[date[0]]);
 
         num_of_days++;
     }
@@ -92,7 +87,6 @@ function average_vehicles_per_day(records) {
         vehicles_number++;
     }
 
-    //console.log(records.vendorId) + ' ' + "car id";
     return vehicles_number / num_of_days;
 }
 
@@ -222,17 +216,15 @@ function update_taxi_properties(records) {
 }
 
 
-setInterval(updateStatisticsInFile, 1000)
+setInterval(updatefile, 1000)
 
-function updateStatisticsInFile() {
-    var fileText = num_of_records + ',' + num_of_records + ',' + '\n';
-    console.log(Object.entries(month_hash).length);
+function updatefile() {
+    var fileText = num_of_records + '\n' + num_of_records + '\n';
 
     for (let i = 0; i < Object.entries(month_hash).length; i++) {
-        console.log(Object.keys(month_hash)[i]);
-        fileText += Object.keys(month_hash)[i] + ',' + Object.values(month_hash)[i] / 30 + ',' + '\n';
+        fileText += Object.keys(month_hash)[i] + ',' + Object.values(month_hash)[i] / 30 + '\n';
     }
-    fileText += Object.entries(vehcles_hash).length + ',' + '\n';
+    fileText += Object.entries(vehcles_hash).length + '\n';
     fileText += yellow_taxi.NUM_of_woodside_trips + ',';
     fileText += green_taxi.NUM_of_woodside_trips + ',';
     fileText += fhv_taxi.NUM_of_woodside_trips;
